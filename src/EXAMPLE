@@ -1,0 +1,1 @@
+python2.7 make-syllabus.py --start 1/1/2010 --end 1/1/2011 --template html.template --schedule schedule.yaml  --days 0 --holidays '12/27/2010' --header header.html --footer footer.html
