@@ -2,5 +2,6 @@
   <TD>{{ lec_num }}</TD>
   <TD>{{ lec_date }}</TD>
   <TD>{{ description }}</TD>
-  <TD>{% for reading in readings %}<a href="{{ reading.url }}">{{ reading.title }}</a>&nbsp;{% endfor %}</TD>
+  <TD>{% for reading in readings %}<li><a href="{{ reading.url }}">{{ reading.title }}</a></li>{% endfor %}</TD>
+  <TD>{{ note }}</TD>
 </TR>
