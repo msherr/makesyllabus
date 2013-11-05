@@ -1,7 +1,11 @@
 <TR>
   <TD>{{ lec_num }}</TD>
+{% if noclass == True %}
+  <TD COLSPAN="4" align="CENTER"><I>No class</I></TD>
+{% else %}
   <TD>{{ lec_date }}</TD>
   <TD>{{ description }}</TD>
   <TD>{% for reading in readings %}<li><a href="{{ reading.url }}">{{ reading.title }}</a></li>{% endfor %}</TD>
   <TD>{{ note }}</TD>
+{% endif %}
 </TR>

@@ -77,6 +77,7 @@ def main():
                 class_info['lec_num'] = "-"
                 class_info['lec_date'] = single_date
                 class_info['description'] = 'No class'
+                class_info['noclass'] = True
             else:
                 # not a holiday; we have class.
                 if class_num < len(schedule):
