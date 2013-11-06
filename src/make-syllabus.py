@@ -3,6 +3,9 @@
 # A syllabus creator by Micah Sherr
 # Georgetown University
 # msherr@cs.georgetown.edu
+#
+# Use at your own risk.
+# Released under GPLv3
 
 
 import dateutil.parser
@@ -54,8 +57,6 @@ def main():
     end = dateutil.parser.parse(args.end).date()
     days = list(args.days)
 
-    default_description = { 'description' : 'TBD' }
-    
     with file(args.schedule, 'rt') as f:
         schedule = yaml.load(f)
     with open(args.template,'rt') as f:
@@ -82,8 +83,6 @@ def main():
                 # not a holiday; we have class.
                 if class_num < len(schedule):
                     class_info = schedule[class_num]
-                else:
-                    class_info = default_description
                 class_num = class_num + 1
                 class_info['lec_num'] = class_num
                 class_info['lec_date'] = single_date
