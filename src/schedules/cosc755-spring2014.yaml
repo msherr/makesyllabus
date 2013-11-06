@@ -1,0 +1,193 @@
+# COSC755: Surveillance and Censorship
+# Spring 2014
+#
+# generate the syllabus via:
+# python2.7 make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" --days 02 --schedule schedule.yaml  --template html.template  --header header.html --footer footer.html  --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014
+
+# TODO: add monitoring
+-
+  description: Course introduction
+  note: Project assigned
+-
+  description: Law and policy
+  readings:
+    - 
+      title: "The System of Foreign Intelligence Surveillance Law"
+      url: http://papers.ssrn.com/sol3/papers.cfm?abstract_id=586616
+-
+  description: State-sponsored espionage
+  readings:
+    -
+      title: Snowden leaks (exact readings TBD)
+    -
+      title: "APT1: Exposing One of China's Cyber Espionage Units"
+      url: http://intelreport.mandiant.com/Mandiant_APT1_Report.pdf
+-
+  description: Nation-scale filtering and blocking
+  readings:
+    -
+      title: "Internet Censorship in Iran: A First Look"
+      url: https://jhalderm.com/pub/papers/iran-foci13.pdf
+-
+  description: Nation-scale filtering and blocking
+  readings:
+    -
+      title: "How Censorship in China Allows Government Criticism but Silences Collective Expression"
+      url: http://gking.harvard.edu/files/censored.pdf
+    -
+      title: "Ignoring the Great Firewall of China"
+      url: http://www.cl.cam.ac.uk/~rnc1/ignoring.pdf
+- 
+  description: Secure email
+  note: Project proposals due
+  readings: 
+    - 
+      title: Why Johnny Can't Encrypt. A Usability Evaluation of PGP 5.0. 
+      url: http://www.gaudior.net/alma/johnny.pdf
+-
+  description: Private browsing (part I)
+  readings:
+    -
+      title: "Tor: The Second-Generation Onion Router"
+      url: http://www.onion-router.net/Publications/tor-design.pdf
+    -
+      title: "Users Get Routed: Traffic Correlation on Tor by Realistic Adversaries"
+      url: https://security.cs.georgetown.edu/~msherr/redirect.php?url=papers/users-get-routed.pdf
+-
+  description: Private browsing (part II)
+  readings:
+    - 
+      title: "How China Is Blocking Tor"
+      url: http://arxiv.org/pdf/1204.0447.pdf
+    -
+      title: "Tor bridges"
+      url: https://www.torproject.org/docs/bridges.html.en
+-
+  description: Traffic analysis
+  readings:
+    -
+      title: "Chimera: A Declarative Language for Streaming Network Traffic Analysis"
+      url: https://www.usenix.org/system/files/conference/usenixsecurity12/sec12-final116.pdf
+    -
+      title: "The Parrot Is Dead: Observing Unobservable Network Communications"
+      url: http://www.cs.utexas.edu/~shmat/shmat_oak13parrot.pdf
+-
+  description: Thwarting the censor
+  readings:
+    - 
+      title: "Hide and Seek: An Introduction to Steganography"
+    -
+      title: "Protocol Misidentification Made Easy with Format-Transforming Encryption"
+      url: http://eprint.iacr.org/2012/494.pdf
+-
+  description: Secure chat
+  readings:
+    -
+      title: "Off-the-Record Communication, or, Why Not to Use PGP"
+      url: http://www.cypherpunks.ca/otr/otr-wpes.pdf
+    -
+      title: "Improved Group Off-The-Record Messaging"
+      url: http://www-users.cs.umn.edu/~hopper/gotr.pdf
+-
+  description: Real-time communication
+  readings:
+    -
+      title: "Skype Security Evaluation"
+      url: http://www.anagram.com/berson/abskyeval.html
+    -
+      title: "Three Researchers, Five Conjectures: An Empirical Analysis of TOM-Skype Censorship and Surveillance"
+      url: http://www.cs.unm.edu/~crandall/foci11knockel.pdf
+-
+  description: Provable anonymity
+  readings:
+    -
+      title: "Hang With Your Buddies to Resist Intersection Attacks"
+      url: http://dedis.cs.yale.edu/dissent/papers/buddies.pdf
+    -
+      title: "Dissent: Accountable Anonymous Group Messaging"
+      url: http://dedis.cs.yale.edu/dissent/papers/ccs10/dissent.pdf
+-
+  description: Public key infrastructure
+  readings:
+    -
+      title: "Internet Security under Attack: The Undermining of Digital Certificates"
+      url: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6096548
+    -
+      title: "SSL and HTTPS: Revisiting past challenges and evaluating certificate trust model enhancements"
+      url: http://www.ieee-security.org/TC/SP2013/papers/4977a511.pdf
+-
+# COVERT CHANNELS
+  description: Covert channels
+  readings:
+    -
+      title: "IP Covert Timing Channels: Design and Detection"
+      url: http://dl.acm.org/citation.cfm?id=1030108
+    -
+      title: "A Survey of Covert Channels and Countermeasures in Computer Network Protocols"
+      url: http://researchbank.swinburne.edu.au/vital/access/services/Download/swin:9173/SOURCE2
+-
+  description: Project status updates
+  note: In-class presentations
+-
+  description: Project status updates
+  note: In-class presentations
+-
+ description: Receiver anonymity
+ readings:
+   -
+     title: "Trawling for Tor Hidden Services: Detection, Measurement, Deanonymization" 
+-
+# CENSORSHIP CIRCUMVENTION
+  description: Censorship circumvention via traffic shaping
+  readings:
+    -
+      title: "SkypeMorph: Protocol Obfuscation for Tor Bridges"
+    -
+      title: "I Want My Voice to be Heard: IP over Voice-over-IP for Unobservable Censorship Circumvention"
+      url: http://www.freehaven.net/anonbib/cache/ndss13-freewave.pdf
+-
+  description: Limits of traffic shaping
+  readings:
+    -
+      title: "Cover Your ACKs: Pitfalls of Covert Channel Censorship Circumvention"
+-
+  description: Censorship circumvention via router indirection
+  readings:
+  -
+    title: "Telex: Anticensorship in the Network Infrastructure"
+  -
+    title: "Routing Around Decoys"
+-
+  description: Censorship detection
+  readings:
+  -
+    title: "Perspectives: Improving SSH-style Host Authentication with Multi-path Probing"
+  -
+    title: "Validating Web Content with Senser"
+    url: https://security.cs.georgetown.edu/~msherr/redirect.php?url=papers/senser.pdf
+-
+  description: Side channels
+  readings:
+    -
+      title: "Spot me if you can: Uncovering spoken phrases in encrypted VoIP conversations"
+      url: http://www.cs.jhu.edu/~cwright/oakland08.pdf
+    -
+      title: "Touching from a Distance: Website Fingerprinting Attacks and Defenses"
+      url: http://www.cs.sunysb.edu/~xcai/fp.pdf
+-
+  description: Redesigning networks for privacy
+  readings:
+    -
+      title: "Tor Instead of IP"
+      url: http://homes.cs.washington.edu/~tom/pubs/torip.pdf
+-
+  description: To be decided
+-
+  description: To be decided
+-
+  description: Course project final presentations
+  note: In-class presentations
+-
+  description: Course project final presentations
+  note: In-class presentations
+
