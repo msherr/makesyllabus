@@ -2,9 +2,9 @@
 # Spring 2014
 #
 # generate the syllabus via:
-# python2.7 make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" --days 02 --schedule schedule.yaml  --template html.template  --header header.html --footer footer.html  --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014
+# % python2.7 make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" --days 02 --schedule schedule.yaml  --template html.template  --header header.html --footer footer.html  --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014"
 
-# TODO: add monitoring
+
 -
   description: Course introduction
   note: Project assigned
@@ -44,6 +44,9 @@
     - 
       title: Why Johnny Can't Encrypt. A Usability Evaluation of PGP 5.0. 
       url: http://www.gaudior.net/alma/johnny.pdf
+    -
+      title: "The Daunting Challenge of Secure E-Mail"
+      url: http://www.newyorker.com/online/blogs/elements/2013/11/the-daunting-challenge-of-secure-e-mail.html
 -
   description: Private browsing (part I)
   readings:
