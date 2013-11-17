@@ -13,6 +13,7 @@ import argparse
 import datetime
 import yaml
 from jinja2 import Template
+import pytz
 
 
 def parse_command_line():
@@ -24,7 +25,9 @@ def parse_command_line():
     parser.add_argument('--schedule', help='schedule file', required=True)
     parser.add_argument('--template', help='django template file', required=True)
     parser.add_argument('--header', help='header file to insert before template')
-    parser.add_argument('--footer', help='footer file to insert before template')
+    parser.add_argument('--footer', help='footer file to insert after template')
+    parser.add_argument('--starttime', help='the time at which the class begins; useful for iCalendar output')
+    parser.add_argument('--endtime', help='the time at which the class ends; useful for iCalendar output')
     args = parser.parse_args()
     return args
 
@@ -67,7 +70,14 @@ def main():
     if args.header is not None:
         with open(args.header,'rt') as h:
             print h.read()
-    
+
+    if args.starttime is not None and args.endtime is not None:
+        st = dateutil.parser.parse(args.starttime).time()
+        et = dateutil.parser.parse(args.endtime).time()
+    else:
+        st = None
+        et = None    
+            
     day_count = (end - start).days + 1
     class_num = 0
     for single_date in (start + datetime.timedelta(n) for n in range(day_count)):
@@ -86,6 +96,11 @@ def main():
                 class_num = class_num + 1
                 class_info['lec_num'] = class_num
                 class_info['lec_date'] = single_date
+                
+                if st != None and et != None:
+                    class_info['date_begin'] = str(single_date.year)+str(single_date.month)+str(single_date.day)+"T"+st.strftime("%H%M%S")+"Z"
+                    class_info['date_end'] = str(single_date.year)+str(single_date.month)+str(single_date.day)+"T"+et.strftime("%H%M%S")+"Z"
+                
             print t.render(class_info)
 
     if args.footer is not None:
