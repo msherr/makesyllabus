@@ -9,6 +9,7 @@
 
 
 import dateutil.parser
+from dateutil.tz import *
 import argparse
 import datetime
 import yaml
@@ -71,9 +72,9 @@ def make_ical_event(class_date,start_time,end_time,class_info,args):
         event.add('summary', class_info['description'])
     else:
         event.add('summary', args.course + ": " + class_info['description'])
-    event.add('dtstart', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second) )
-    event.add('dtstamp', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second) )
-    event.add('dtend', datetime.datetime(class_date.year,class_date.month,class_date.day,end_time.hour,end_time.minute,end_time.second) )
+    event.add('dtstart', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second,tzinfo=tzlocal()) )
+    event.add('dtstamp', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second, tzinfo=tzlocal()) )
+    event.add('dtend', datetime.datetime(class_date.year,class_date.month,class_date.day,end_time.hour,end_time.minute,end_time.second, tzinfo=tzlocal()) )
     event['uid'] = str(class_date.year)+str(class_date.month)+str(class_date.day)+"T"+start_time.strftime("%H%M%S")+"Z@security.cs.georgetown.edu"
     if 'readings' in class_info:
         desc = 'Readings:\n'
