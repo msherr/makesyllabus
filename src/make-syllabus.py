@@ -13,6 +13,7 @@ import argparse
 import datetime
 import yaml
 from jinja2 import Template
+from icalendar import Calendar, Event
 import pytz
 
 
@@ -23,12 +24,21 @@ def parse_command_line():
     parser.add_argument('--end', help='end date', required=True)
     parser.add_argument('--days', help='days of week (0-6, where Monday is 0 and Sunday is 0)', required=True)
     parser.add_argument('--schedule', help='schedule file', required=True)
-    parser.add_argument('--template', help='django template file', required=True)
+    parser.add_argument('--template', help='django template file (must specify either this or --ical')
+    parser.add_argument('--ical', help='icalendar output file (must specify either this or --template')
     parser.add_argument('--header', help='header file to insert before template')
     parser.add_argument('--footer', help='footer file to insert after template')
     parser.add_argument('--starttime', help='the time at which the class begins; useful for iCalendar output')
     parser.add_argument('--endtime', help='the time at which the class ends; useful for iCalendar output')
     args = parser.parse_args()
+
+    # deal with conditional dependencies
+    if args.ical is None and args.template is None:
+        print "ERROR: must specify either --ical or --template"
+        exit(1)
+    if args.ical is not None and (args.starttime is None or args.endtime is None):
+        print "ERROR: for calendars, you must specify start and end times"
+        exit(1)        
     return args
 
 
@@ -51,6 +61,24 @@ def parse_holidays( holiday_string ):
             day = dateutil.parser.parse(part).date()
             holidays.append(day)
     return holidays
+
+
+
+def make_ical_event(class_date,start_time,end_time,class_info):
+    event = Event()
+    event.add('summary', class_info['description'])
+    event.add('dtstart', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second) )
+    event.add('dtstamp', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second) )
+    event.add('dtend', datetime.datetime(class_date.year,class_date.month,class_date.day,end_time.hour,end_time.minute,end_time.second) )
+    event['uid'] = str(class_date.year)+str(class_date.month)+str(class_date.day)+"T"+start_time.strftime("%H%M%S")+"Z@security.cs.georgetown.edu"
+    if 'readings' in class_info:
+        desc = 'Readings:\n'
+        for reading in class_info['readings']:
+            desc += "   " + reading['title'] + "\n"
+            if 'url' in reading:
+                event.add('url', reading['url'])
+        event.add('description', desc )
+    return event
     
 
 
@@ -62,21 +90,23 @@ def main():
 
     with file(args.schedule, 'rt') as f:
         schedule = yaml.load(f)
-    with open(args.template,'rt') as f:
-        t = Template(f.read())
-
+    if args.template is not None:
+        with open(args.template,'rt') as f:
+            t = Template(f.read())
+    if args.ical is not None:
+        cal = Calendar()
+        cal.add('prodid', '-//MicahSherr@Georgetown//make-syllabus//')
+        cal.add('version', '2.0')
+        
     holidays = parse_holidays( args.holidays )
 
-    if args.header is not None:
+    if args.template is not None and args.header is not None:
         with open(args.header,'rt') as h:
             print h.read()
 
     if args.starttime is not None and args.endtime is not None:
         st = dateutil.parser.parse(args.starttime).time()
         et = dateutil.parser.parse(args.endtime).time()
-    else:
-        st = None
-        et = None    
             
     day_count = (end - start).days + 1
     class_num = 0
@@ -97,16 +127,20 @@ def main():
                 class_info['lec_num'] = class_num
                 class_info['lec_date'] = single_date
                 
-                if st != None and et != None:
-                    class_info['date_begin'] = str(single_date.year)+str(single_date.month)+str(single_date.day)+"T"+st.strftime("%H%M%S")+"Z"
-                    class_info['date_end'] = str(single_date.year)+str(single_date.month)+str(single_date.day)+"T"+et.strftime("%H%M%S")+"Z"
-                
-            print t.render(class_info)
+            if args.template is not None:
+                print t.render(class_info)
+            if args.ical is not None and single_date not in holidays:
+                event = make_ical_event(single_date,st,et,class_info)
+                cal.add_component(event)
 
-    if args.footer is not None:
+    if args.template is not None and args.footer is not None:
         with open(args.footer,'rt') as f:
             print f.read()
 
+    if args.ical is not None:
+        with open(args.ical,'wb') as o:
+            o.write(cal.to_ical())
+            
 
 if __name__ == "__main__":
     main()
