@@ -30,6 +30,7 @@ def parse_command_line():
     parser.add_argument('--footer', help='footer file to insert after template')
     parser.add_argument('--starttime', help='the time at which the class begins; useful for iCalendar output')
     parser.add_argument('--endtime', help='the time at which the class ends; useful for iCalendar output')
+    parser.add_argument('--course', help='some identifier which will precede the summary in iCalendar output')
     args = parser.parse_args()
 
     # deal with conditional dependencies
@@ -64,9 +65,12 @@ def parse_holidays( holiday_string ):
 
 
 
-def make_ical_event(class_date,start_time,end_time,class_info):
+def make_ical_event(class_date,start_time,end_time,class_info,args):
     event = Event()
-    event.add('summary', class_info['description'])
+    if args.course is None:
+        event.add('summary', class_info['description'])
+    else:
+        event.add('summary', args.course + ": " + class_info['description'])
     event.add('dtstart', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second) )
     event.add('dtstamp', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second) )
     event.add('dtend', datetime.datetime(class_date.year,class_date.month,class_date.day,end_time.hour,end_time.minute,end_time.second) )
@@ -130,7 +134,7 @@ def main():
             if args.template is not None:
                 print t.render(class_info)
             if args.ical is not None and single_date not in holidays:
-                event = make_ical_event(single_date,st,et,class_info)
+                event = make_ical_event(single_date,st,et,class_info,args)
                 cal.add_component(event)
 
     if args.template is not None and args.footer is not None:
