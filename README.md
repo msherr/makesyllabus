@@ -58,7 +58,7 @@ Then, for usage instructions, do
       --end END             end date
       --days DAYS           days of week (0-6, where Monday is 0 and Sunday is 0)
       --schedule SCHEDULE   schedule file
-      --template TEMPLATE   django template file (must specify either this or --ical)
+      --template TEMPLATE   jinja2 template file (must specify either this or --ical)
       --ical ICAL           icalendar output file (must specify either this or --template)
       --header HEADER       header file to insert before template
       --footer FOOTER       footer file to insert after template
@@ -97,7 +97,7 @@ Produce html output file for the syllabus (writes to STDOUT):
     
 #### Example schedule
 
-Schedules are written in Yaml.  Each class is written as a top-level YAML stanza.  For example, the following describes three classes:
+Schedules are written in Yaml.  Each class is written as a top-level Yaml stanza.  For example, the following describes three classes:
 
     # COSC755: Surveillance and Censorship
     # Spring 2014

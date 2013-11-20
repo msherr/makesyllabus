@@ -25,7 +25,7 @@ def parse_command_line():
     parser.add_argument('--end', help='end date', required=True)
     parser.add_argument('--days', help='days of week (0-6, where Monday is 0 and Sunday is 0)', required=True)
     parser.add_argument('--schedule', help='schedule file', required=True)
-    parser.add_argument('--template', help='django template file (must specify either this or --ical)')
+    parser.add_argument('--template', help='jinja2 template file (must specify either this or --ical)')
     parser.add_argument('--ical', help='icalendar output file (must specify either this or --template)')
     parser.add_argument('--header', help='header file to insert before template')
     parser.add_argument('--footer', help='footer file to insert after template')
