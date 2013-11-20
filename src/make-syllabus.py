@@ -102,6 +102,7 @@ def main():
         cal = Calendar()
         cal.add('prodid', '-//MicahSherr@Georgetown//make-syllabus//')
         cal.add('version', '2.0')
+        if args.course is not None:  cal.add('X-WR-CALNAME', args.course)
         
     holidays = parse_holidays( args.holidays )
 
