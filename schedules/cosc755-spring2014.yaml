@@ -1,8 +1,5 @@
 # COSC755: Surveillance and Censorship
 # Spring 2014
-#
-# generate the syllabus via:
-# % python2.7 make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" --days 02 --schedule schedule.yaml  --template html.template  --header header.html --footer footer.html  --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014"
 
 
 -
@@ -79,6 +76,7 @@
   readings:
     - 
       title: "Hide and Seek: An Introduction to Steganography"
+      url: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1203220&tag=1
     -
       title: "Protocol Misidentification Made Easy with Format-Transforming Encryption"
       url: http://eprint.iacr.org/2012/494.pdf
@@ -139,12 +137,14 @@
  readings:
    -
      title: "Trawling for Tor Hidden Services: Detection, Measurement, Deanonymization" 
+     url: http://www.freehaven.net/anonbib/cache/oakland2013-trawling.pdf
 -
 # CENSORSHIP CIRCUMVENTION
   description: Censorship circumvention via traffic shaping
   readings:
     -
       title: "SkypeMorph: Protocol Obfuscation for Tor Bridges"
+      url: http://www.cypherpunks.ca/~iang/pubs/skypemorph-ccs.pdf
     -
       title: "I Want My Voice to be Heard: IP over Voice-over-IP for Unobservable Censorship Circumvention"
       url: http://www.freehaven.net/anonbib/cache/ndss13-freewave.pdf
@@ -153,18 +153,23 @@
   readings:
     -
       title: "Cover Your ACKs: Pitfalls of Covert Channel Censorship Circumvention"
+      url: http://dl.acm.org/citation.cfm?id=2516742
 -
   description: Censorship circumvention via router indirection
   readings:
   -
     title: "Telex: Anticensorship in the Network Infrastructure"
+    url: https://jhalderm.com/pub/papers/telex-sec11.pdf
+
   -
     title: "Routing Around Decoys"
+    url: http://dl.acm.org/citation.cfm?id=2382209
 -
   description: Censorship detection
   readings:
   -
     title: "Perspectives: Improving SSH-style Host Authentication with Multi-path Probing"
+    url: http://www.cs.cmu.edu/~dga/papers/perspectives-usenix2008.pdf
   -
     title: "Validating Web Content with Senser"
     url: https://security.cs.georgetown.edu/~msherr/redirect.php?url=papers/senser.pdf
