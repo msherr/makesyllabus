@@ -77,13 +77,22 @@ Then, for usage instructions, do
 
 Produce an iCalendar output file for the syllabus:
 
-    %  python make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" --days 02 --schedule schedules/cosc755-spring2014.yaml --ical cosc755-spring2014.ics --starttime 3:30pm --endtime 4:45pm --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014" --course COSC755
+    % python make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" \
+    --days 02 --schedule schedules/cosc755-spring2014.yaml \
+    --ical cosc755-spring2014.ics --starttime 3:30pm --endtime 4:45pm \
+    --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014" \
+    --course COSC755
     
 Note that in the above example, the substring "3/8/2014#3/16/2014" is used to denote the dates between 3/8 and 3/16 (INCLUSIVE).
 
 Produce html output file for the syllabus (writes to STDOUT):
 
-    %  python make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" --days 02 --schedule schedules/cosc755-spring2014.yaml  --starttime 3:30pm --endtime 4:45pm --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014" --course COSC755 --header templates/html/header.html --footer templates/html/footer.html --template templates/html/syllabus.html
+    % python make-syllabus.py --start "january 8, 2014" --end "april 28, 2014" \
+    --days 02 --schedule schedules/cosc755-spring2014.yaml \
+    --starttime 3:30pm --endtime 4:45pm \
+    --holidays "1/20/2014:2/17/2014:3/8/2014#3/16/2014:4/17/2014#4/21:2014" \
+    --course COSC755 --header templates/html/header.html \
+    --footer templates/html/footer.html --template templates/html/syllabus.html
 
     
 #### Example schedule
