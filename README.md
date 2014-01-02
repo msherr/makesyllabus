@@ -1,6 +1,6 @@
 make-syllabus.py
 ================
-Micah Sherr, 2013  
+Micah Sherr, 2013, 2014  
 Georgetown University  
 msherr@cs.georgetown.edu
 
@@ -47,7 +47,7 @@ Then, for usage instructions, do
                              --days DAYS --schedule SCHEDULE [--template TEMPLATE]
                         [--ical ICAL] [--header HEADER] [--footer FOOTER]
                         [--starttime STARTTIME] [--endtime ENDTIME]
-                        [--course COURSE]
+                        [--course COURSE]  [--version VERSION]
 
     Syllabus generator
 
@@ -69,6 +69,8 @@ Then, for usage instructions, do
                             output
       --course COURSE       some identifier which will precede the summary in
                             iCalendar output
+      --version VERSION     increment this after each change to counteract caching
+                            by iCalendar servers
 
 
 ### Examples
