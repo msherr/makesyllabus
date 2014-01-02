@@ -32,6 +32,7 @@ def parse_command_line():
     parser.add_argument('--starttime', help='the time at which the class begins; useful for iCalendar output')
     parser.add_argument('--endtime', help='the time at which the class ends; useful for iCalendar output')
     parser.add_argument('--course', help='some identifier which will precede the summary in iCalendar output')
+    parser.add_argument('--version', help='increment this after each change to counteract caching by iCalendar servers')
     args = parser.parse_args()
 
     # deal with conditional dependencies
@@ -76,6 +77,8 @@ def make_ical_event(class_date,start_time,end_time,class_info,args):
     event.add('dtstamp', datetime.datetime(class_date.year,class_date.month,class_date.day,start_time.hour,start_time.minute,start_time.second, tzinfo=tzlocal()) )
     event.add('dtend', datetime.datetime(class_date.year,class_date.month,class_date.day,end_time.hour,end_time.minute,end_time.second, tzinfo=tzlocal()) )
     event['uid'] = str(class_date.year)+str(class_date.month)+str(class_date.day)+"T"+start_time.strftime("%H%M%S")+"Z@security.cs.georgetown.edu"
+    if args.version is not None:
+        event['SEQUENCE'] = args.version
     if 'readings' in class_info:
         desc = 'Readings:\n'
         for reading in class_info['readings']:
